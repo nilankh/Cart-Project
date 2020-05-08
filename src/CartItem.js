@@ -9,6 +9,12 @@ class CartItem extends React.Component {
             qty: 1,
             img: ''
         }
+        // this.increaseQuantity = this.increaseQuantity.bind(this)ye v kr skte jo hmne onclick me neeche kia h dono same h
+   
+    }
+
+    increaseQuantity = () => {
+        console.log('this.state', this.state);
     }
     render () {
         const { price, title, qty } = this.state; //this is object restructuring isme jo property form above object
@@ -19,14 +25,27 @@ class CartItem extends React.Component {
                 </div>
                 <div className="right-block">
                     <div style={ { fontSize: 25 } }>{title}</div>
-        <div style= { { color: '#777' }}>&#8377; {price} </div>
+                    <div style= { { color: '#777' }}>&#8377; {price} </div>
                     <div style= { { color: '#777' }}>Qty: {qty}</div>
                     <div className="cart-item-actions">
                         {/* Buttons */}
 
-                        <img alt="increase" className="action-icons" src="https://image.flaticon.com/icons/svg/992/992651.svg" />
-                        <img alt="decrease" className="action-icons" src="https://image.flaticon.com/icons/svg/1828/1828906.svg" />
-                        <img alt="delete" className="action-icons" src="https://image.flaticon.com/icons/svg/1214/1214428.svg" />
+                        <img 
+                            alt="increase" 
+                            className="action-icons" 
+                            src="https://image.flaticon.com/icons/svg/992/992651.svg" 
+                            onClick= { this.increaseQuantity.bind(this) }
+                        />
+                        <img 
+                            alt="decrease" 
+                            className="action-icons" 
+                            src="https://image.flaticon.com/icons/svg/1828/1828906.svg" 
+                        />
+                        <img 
+                            alt="delete" 
+                            className="action-icons" 
+                            src="https://image.flaticon.com/icons/svg/1214/1214428.svg" 
+                        />
 
 
                     </div>
