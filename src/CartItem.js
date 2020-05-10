@@ -9,12 +9,25 @@ class CartItem extends React.Component {
             qty: 1,
             img: ''
         }
+        // or we can bind in constructor too
         // this.increaseQuantity = this.increaseQuantity.bind(this)ye v kr skte jo hmne onclick me neeche kia h dono same h
    
     }
 
-    increaseQuantity = () => {
+    increaseQuantity = () => {  //arrow function se directly bind ho jyga koi dikkat ni aayega
+        // this.state.qty += 1 
         console.log('this.state', this.state);
+        // setState form1
+        // this.setState({
+        //     qty: this.state.qty+=1
+        // });
+
+        // setState form2 - if previosu state required use this
+        this.setState((prevState) => {
+            return {
+                qty: prevState.qty + 1
+            }
+        });
     }
     render () {
         const { price, title, qty } = this.state; //this is object restructuring isme jo property form above object
@@ -34,7 +47,8 @@ class CartItem extends React.Component {
                             alt="increase" 
                             className="action-icons" 
                             src="https://image.flaticon.com/icons/svg/992/992651.svg" 
-                            onClick= { this.increaseQuantity.bind(this) }
+                            // onClick= { this.increaseQuantity.bind(this) }
+                            onClick= { this.increaseQuantity }
                         />
                         <img 
                             alt="decrease" 
