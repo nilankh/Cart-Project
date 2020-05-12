@@ -1,18 +1,18 @@
 import React from 'react';
 
 class CartItem extends React.Component {
-    constructor () {
-        super();
-        this.state = {
-            price: 999,
-            title: 'Mobile Phone',
-            qty: 1,
-            img: ''
-        }
-        // or we can bind in constructor too
-        // this.increaseQuantity = this.increaseQuantity.bind(this)ye v kr skte jo hmne onclick me neeche kia h dono same h
-        // this.testing();
-    }
+    // constructor () {
+    //     super();
+    //     this.state = {
+    //         price: 999,
+    //         title: 'Mobile Phone',
+    //         qty: 1,
+    //         img: ''
+    //     }
+    //     // or we can bind in constructor too
+    //     // this.increaseQuantity = this.increaseQuantity.bind(this)ye v kr skte jo hmne onclick me neeche kia h dono same h
+    //     // this.testing();
+    // }
 
     // testing () {
     //     const promise = new Promise((resolve, reject) => {
@@ -58,7 +58,8 @@ class CartItem extends React.Component {
         });
     }
     render () {
-        const { price, title, qty } = this.state; //this is object restructuring isme jo property form above object
+        console.log('this.props', this.props);
+        const { price, title, qty } = this.props.product; //this is object restructuring isme jo property form above object
         return (
             <div className="cart-item">
                 <div className="left-block">
