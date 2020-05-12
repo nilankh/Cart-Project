@@ -11,15 +11,31 @@ class CartItem extends React.Component {
         }
         // or we can bind in constructor too
         // this.increaseQuantity = this.increaseQuantity.bind(this)ye v kr skte jo hmne onclick me neeche kia h dono same h
-   
+        this.testing();
     }
 
+    testing () {
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('done');
+            }, 5000);
+        })
+        promise.then(() => {
+            // set state acts like a synchronous call
+            this.setState({ qty: this.state.qty + 10 });
+            
+            this.setState({ qty: this.state.qty + 10 });
+            
+            this.setState({ qty: this.state.qty + 10 });
+            console.log('state', this.state);
+        });
+    }
     increaseQuantity = () => {  //arrow function se directly bind ho jyga koi dikkat ni aayega
         // this.state.qty += 1 
         // console.log('this.state', this.state);
         // setState form1
         // this.setState({
-        //     qty: this.state.qty+=1
+        //     qty: this.state.qty + 1
         // });
 
         // setState form2 - if previosu state required use this
@@ -29,15 +45,14 @@ class CartItem extends React.Component {
             }
         });
     }
-
     decreaseQuantity = () => {
-        // console.log('this.state', this.state);
+
         const { qty } = this.state;
         if(qty === 0){
             return;
         }
         this.setState((prevState) => {
-            return {
+            return{
                 qty: prevState.qty - 1
             }
         });
