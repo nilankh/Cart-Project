@@ -60,7 +60,7 @@ class CartItem extends React.Component {
     render () {
         console.log('this.props', this.props);
         const { price, title, qty } = this.props.product; //this is object restructuring isme jo property form above object
-        const { product, onIncreaseQuantity, onDecreaseQuantity} = this.props;
+        const { product, onIncreaseQuantity, onDecreaseQuantity, onDeleteProduct} = this.props;
         return (
             <div className="cart-item">
                 <div className="left-block">
@@ -90,6 +90,8 @@ class CartItem extends React.Component {
                             alt="delete" 
                             className="action-icons" 
                             src="https://image.flaticon.com/icons/svg/1214/1214428.svg" 
+                            
+                           onClick = { () => onDeleteProduct(product.id)} 
                         />
 
 
