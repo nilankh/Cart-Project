@@ -60,6 +60,7 @@ class CartItem extends React.Component {
     render () {
         console.log('this.props', this.props);
         const { price, title, qty } = this.props.product; //this is object restructuring isme jo property form above object
+        const { product, onIncreaseQuantity, onDecreaseQuantity} = this.props;
         return (
             <div className="cart-item">
                 <div className="left-block">
@@ -77,13 +78,13 @@ class CartItem extends React.Component {
                             className="action-icons" 
                             src="https://image.flaticon.com/icons/svg/992/992651.svg" 
                             // onClick= { this.increaseQuantity.bind(this) }
-                            onClick= {() => this.props.onIncreaseQuantity(this.props.product) }
+                            onClick= {() => onIncreaseQuantity(product) }
                         />
                         <img 
                             alt="decrease" 
                             className="action-icons" 
                             src="https://image.flaticon.com/icons/svg/1828/1828906.svg" 
-                            onClick= { this.decreaseQuantity }
+                            onClick= { () => onDecreaseQuantity(product) }
                         />
                         <img 
                             alt="delete" 
