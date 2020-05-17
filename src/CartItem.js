@@ -30,7 +30,7 @@ class CartItem extends React.Component {
     //         console.log('state', this.state);
     //     });
     // }
-    increaseQuantity = () => {  //arrow function se directly bind ho jyga koi dikkat ni aayega
+    // increaseQuantity = () => {  //arrow function se directly bind ho jyga koi dikkat ni aayega
         // this.state.qty += 1 
         // console.log('this.state', this.state);
         // setState form1
@@ -39,24 +39,24 @@ class CartItem extends React.Component {
         // });
 
         // setState form2 - if previosu state required use this
-        this.setState((prevState) => {
-            return {
-                qty: prevState.qty + 1
-            }
-        });
-    }
-    decreaseQuantity = () => {
+    //     this.setState((prevState) => {
+    //         return {
+    //             qty: prevState.qty + 1
+    //         }
+    //     });
+    // }
+    // decreaseQuantity = () => {
 
-        const { qty } = this.state;
-        if(qty === 0){
-            return;
-        }
-        this.setState((prevState) => {
-            return{
-                qty: prevState.qty - 1
-            }
-        });
-    }
+    //     const { qty } = this.state;
+    //     if(qty === 0){
+    //         return;
+    //     }
+    //     this.setState((prevState) => {
+    //         return{
+    //             qty: prevState.qty - 1
+    //         }
+    //     });
+    // }
     render () {
         console.log('this.props', this.props);
         const { price, title, qty } = this.props.product; //this is object restructuring isme jo property form above object
@@ -77,7 +77,7 @@ class CartItem extends React.Component {
                             className="action-icons" 
                             src="https://image.flaticon.com/icons/svg/992/992651.svg" 
                             // onClick= { this.increaseQuantity.bind(this) }
-                            onClick= { this.increaseQuantity }
+                            onClick= {() => this.props.onIncreaseQuantity(this.props.product) }
                         />
                         <img 
                             alt="decrease" 
