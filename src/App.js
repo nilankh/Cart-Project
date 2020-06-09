@@ -102,7 +102,7 @@ handleDeleteProduct = (id) => {
           onDeleteProduct = {this.handleDeleteProduct}        
         />
       <div style= { {padding: 10, fontSize: 20}}>TOTAL: {this.getCartTotal()}</div>
-
+      
       </div>
     );
   }
