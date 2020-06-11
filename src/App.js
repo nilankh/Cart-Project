@@ -2,39 +2,42 @@ import React from 'react';
 import CartItem from './CartItem';
 import Cart from './Cart';
 import Navbar from './Navbar';
-
+import * as firebase from 'firebase';
 class App extends React.Component {
 
   constructor () {
     super();
     this.state = {
-        products: [
-            {
-                price: 99,
-                title: 'Watch',
-                qty: 1,
-                img: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
-                id: 1
-            },
-            {
-                price: 999,
-                title: 'Mobile Phone',
-                qty: 10,
-                img: 'https://images.unsplash.com/photo-1557180295-76eee20ae8aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
-                id: 2
-            },
-            {
-                price: 999,
-                title: 'Laptop',
-                qty: 4,
-                img: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80',
-                id: 3
-            }
-        ]
+        products: [],
+        loading: true
     }
-    // this.increaseQuantity = this.increaseQuantity.bind(this)ye v kr skte jo hmne onclick me neeche kia h dono same h
-//     // this.testing();
+    
   }
+  componentDidMount () {
+    firebase
+      .firestore()
+      .collection('products')
+      .get()
+      .then((snapshot) => {
+        console.log(snapshot);
+
+        snapshot.docs.map((doc) => {
+          console.log(doc.data())
+        });
+
+        const products = snapshot.docs.map((doc) => {
+          const data = doc.data();
+
+          data['id'] = doc.id;
+          return data;
+        })
+        this.setState({
+          products,
+          loading: false
+        })
+      })
+  }
+
 
 handleIncreaseQunatity = (product) => {
     console.log("Hey please inc the qty of", product);
@@ -57,6 +60,7 @@ handleDecreaseQunatity = (product) => {
     products[index].qty -= 1;
     this.setState({
         products
+        
     })
 }
 
@@ -94,7 +98,7 @@ handleDeleteProduct = (id) => {
 
   render () {
     
-    const { products } = this.state;
+    const { products, loading } = this.state;
 
     return (
       <div className="App">
@@ -105,6 +109,7 @@ handleDeleteProduct = (id) => {
           onDecreaseQuantity = {this.handleDecreaseQunatity}
           onDeleteProduct = {this.handleDeleteProduct}        
         />
+        {loading && <h1>Loading Products...</h1>}
       <div style= { {padding: 10, fontSize: 20}}>TOTAL: {this.getCartTotal()}</div>
       </div>
     );
