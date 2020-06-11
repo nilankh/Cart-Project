@@ -5,6 +5,8 @@ import App from './App';
 import * as firebase from 'firebase';
 import  'firebase/firestore';
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
